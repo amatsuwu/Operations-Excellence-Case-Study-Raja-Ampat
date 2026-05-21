@@ -34,3 +34,1995 @@
     }
 
     body.dark-theme {
+      --current-bg: var(--bg-dark);
+      --current-text: var(--text-light);
+      --current-muted: var(--text-muted-dark);
+      --current-pill-bg: var(--pill-bg-dark);
+      --current-card-bg: rgba(255, 255, 255, 0.03);
+      --current-card-border: rgba(255, 255, 255, 0.05);
+      --current-card-shadow: rgba(0, 0, 0, 0.5);
+      --current-border-subtle: rgba(255, 255, 255, 0.1);
+
+      /* 暗色模式下，(255,255,255,0.03) 疊加在 #1A1614 上的近似純色 */
+      --current-solid-card-bg: #1E1A18;
+    }
+
+    body,
+    html {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: var(--current-bg);
+      color: var(--current-text);
+      transition: background-color 0.6s ease-in-out, color 0.6s ease-in-out;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: none;
+      scroll-behavior: smooth;
+      /* 解除全域 Snap，防止手機死鎖 */
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::-webkit-scrollbar {
+      width: 0px;
+      background: transparent;
+    }
+
+    /* 針對桌機保留的 Snap 效果 */
+    @media (min-width: 769px) {
+
+      body,
+      html {
+        scroll-snap-type: y mandatory;
+      }
+    }
+
+    .section-container {
+      min-height: 100vh;
+      padding: 5vh 2rem;
+      position: relative;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* =========================================
+     Section 1: Hero
+     ========================================= */
+    .hero-content {
+      text-align: center;
+      width: 100%;
+      max-width: 1400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      height: 100%;
+    }
+
+    .pre-title {
+      display: inline-block;
+      padding: 12px 32px;
+      background-color: var(--current-pill-bg);
+      border-radius: 50px;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--klook-orange);
+      transition: background-color 0.5s, color 0.5s;
+    }
+
+    .title {
+      font-size: 96px;
+      font-weight: 800;
+      margin: 0;
+      line-height: 1.1;
+      letter-spacing: -1px;
+    }
+
+    .sub-title {
+      font-size: 32px;
+      font-weight: 500;
+      line-height: 1.6;
+      color: var(--current-muted);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .highlight {
+      color: var(--klook-orange);
+      font-weight: 800;
+      font-size: 1.2em;
+    }
+
+    .ticker-wrap {
+      font-size: 144px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .old-price {
+      text-decoration: line-through;
+      text-decoration-thickness: 4px;
+      text-decoration-color: var(--klook-orange);
+      color: var(--current-muted);
+    }
+
+    .new-price {
+      color: var(--current-text);
+    }
+
+    /* 👇 貼在這裡 👇 */
+    .currency-label {
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--current-muted);
+      margin-left: 16px;
+      letter-spacing: 2px;
+      vertical-align: baseline;
+    }
+
+    @media (max-width: 768px) {
+      .currency-label {
+        font-size: 18px;
+        margin-left: 8px;
+      }
+    }
+
+    /* 👆 貼到這裡結束 👆 */
+
+    .data-grid {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      perspective: 1200px;
+      width: 100%;
+    }
+
+    .data-card {
+      background: var(--current-card-bg);
+      border: 1px solid var(--current-card-border);
+      border-radius: 24px;
+      padding: 40px 50px;
+      min-width: 260px;
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease, background 0.5s, border 0.5s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .data-value {
+      font-size: 64px;
+      font-weight: 800;
+      color: var(--klook-orange);
+      transform: translateZ(40px);
+      margin-bottom: 8px;
+    }
+
+    .data-label {
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--current-muted);
+      transform: translateZ(20px);
+    }
+
+    /* =========================================
+     Section 2: Investigation Archive
+     ========================================= */
+    .archive-layout {
+      width: 100%;
+      max-width: 1600px;
+      height: 90vh;
+      display: flex;
+      gap: 4rem;
+    }
+
+    .archive-left {
+      flex: 0 0 35%;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      height: 100%;
+    }
+
+    .section-title {
+      font-size: 48px;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .chip-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .m3-chip {
+      padding: 16px 24px;
+      border-radius: 12px;
+      border: 1px solid var(--current-border-subtle);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--current-muted);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .m3-chip:hover {
+      border-color: var(--klook-orange);
+      color: var(--current-text);
+    }
+
+    .m3-chip.active {
+      background-color: var(--current-pill-bg);
+      color: var(--klook-orange);
+      border-color: var(--klook-orange);
+      font-weight: 700;
+    }
+
+    .claim-image-wrapper {
+      position: relative;
+      flex: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #000;
+      border: 1px solid var(--current-border-subtle);
+    }
+
+    .claim-image-wrapper picture,
+    .evidence-img-box picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .claim-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.8;
+      display: block;
+    }
+
+    .strikethrough-anim {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .strike-line {
+      position: absolute;
+      width: 120%;
+      height: 8px;
+      background-color: var(--error-red);
+      transform: rotate(25deg) scaleX(0);
+      box-shadow: 0 0 20px rgba(225, 29, 72, 0.8);
+      transition: transform 0.6s cubic-bezier(0.8, 0, 0.2, 1);
+      transform-origin: left center;
+    }
+
+    .strike-line-2 {
+      transform: rotate(-25deg) scaleX(0);
+      transition-delay: 0.3s;
+    }
+
+    .optimized-stamp {
+      position: absolute;
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--klook-orange);
+      border: 6px solid var(--klook-orange);
+      padding: 12px 32px;
+      border-radius: 16px;
+      text-transform: uppercase;
+      transform: rotate(-10deg) scale(3);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+      transition-delay: 0.7s;
+      backdrop-filter: blur(4px);
+    }
+
+    .strikethrough-anim.show-strike .strike-line {
+      transform: rotate(25deg) scaleX(1);
+    }
+
+    .strikethrough-anim.show-strike .strike-line-2 {
+      transform: rotate(-25deg) scaleX(1);
+    }
+
+    .strikethrough-anim.show-strike .optimized-stamp {
+      transform: rotate(-10deg) scale(1);
+      opacity: 1;
+    }
+
+    .archive-right {
+      position: relative;
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15vh;
+      padding-bottom: 30vh;
+      padding-right: 1rem;
+
+      scroll-behavior: smooth;
+    }
+
+    .archive-right::-webkit-scrollbar {
+      width: 0px;
+      background: transparent;
+    }
+
+    .evidence-card {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    /* 修改桌機截圖顯示比例 */
+    .evidence-img-box {
+      width: 100%;
+      aspect-ratio: 1080 / 1930;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .evidence-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .evidence-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .m3-badge {
+      align-self: flex-start;
+      padding: 8px 16px;
+      background: var(--current-pill-bg);
+      color: var(--klook-orange);
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .evidence-caption {
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .evidence-insight {
+      font-size: 20px;
+      line-height: 1.8;
+      color: var(--current-muted);
+      margin: 0;
+    }
+
+    .insight-label {
+      color: var(--current-text);
+      font-weight: 700;
+    }
+
+    /* =========================================
+     Section 3: The Strategy
+     ========================================= */
+    .strategy-content {
+      text-align: center;
+      width: 100%;
+      max-width: 1400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+
+    .strategy-content .advanced-sub-title {
+      font-size: 16px;
+      font-weight: 300;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--current-muted);
+      opacity: 0.7;
+      margin-bottom: 2rem;
+    }
+
+    .pipeline-wrapper {
+      position: relative;
+      width: 100%;
+      margin-top: 4rem;
+      padding: 2rem 0;
+    }
+
+    .flow-track {
+      position: absolute;
+      top: 120px;
+      left: 10%;
+      width: 80%;
+      height: 6px;
+      background-color: rgba(255, 91, 0, 0.15);
+      border-radius: 10px;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .flow-glow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 91, 0, 0.5) 50%, rgba(255, 91, 0, 1) 100%);
+      box-shadow: 0 0 20px 5px rgba(255, 91, 0, 0.4);
+      animation: flowRight 3s infinite ease-in-out;
+    }
+
+    @keyframes flowRight {
+      0% {
+        transform: translateX(-100%);
+      }
+
+      100% {
+        transform: translateX(300%);
+      }
+    }
+
+    .micro-metric-badge {
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--klook-orange);
+      color: #FFF;
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(255, 91, 0, 0.3);
+      z-index: 5;
+      animation: floatBounce 3s infinite ease-in-out;
+    }
+
+    @keyframes floatBounce {
+
+      0%,
+      100% {
+        transform: translate(-50%, 0);
+      }
+
+      50% {
+        transform: translate(-50%, -8px);
+      }
+    }
+
+    .pipeline-nodes {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+
+    .node-card {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      padding: 0 20px;
+    }
+
+    .node-icon-wrapper {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      background-color: var(--current-card-bg);
+      border: 2px solid var(--klook-orange);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 10px 25px var(--current-card-shadow);
+      z-index: 1;
+      transition: transform 0.3s;
+    }
+
+    .node-icon {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      z-index: 1;
+      position: relative;
+      display: block;
+    }
+
+    .node-number {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background-color: var(--klook-orange);
+      color: #FFF;
+      font-weight: 800;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      border: 3px solid var(--current-bg);
+      z-index: 3;
+    }
+
+    .node-text {
+      background: var(--current-card-bg);
+      border: 1px solid var(--current-card-border);
+      padding: 24px;
+      border-radius: 16px;
+      width: 100%;
+      box-shadow: 0 10px 20px var(--current-card-shadow);
+    }
+
+    .node-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--klook-orange);
+      margin: 0 0 12px 0;
+    }
+
+    .node-desc {
+      font-size: 16px;
+      color: var(--current-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .interactive-node {
+      cursor: pointer;
+    }
+
+    .interactive-node:hover .node-icon-wrapper {
+      transform: scale(1.05);
+    }
+
+    .interactive-node .node-icon-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid var(--klook-orange);
+      animation: rippleGlow 2s infinite ease-out;
+      z-index: 0;
+    }
+
+    @keyframes rippleGlow {
+      0% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: scale(1.4);
+        opacity: 0;
+      }
+    }
+
+    .view-action-chip {
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--text-dark);
+      color: #FFF;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+      z-index: 4;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      pointer-events: none;
+    }
+
+    /* M3 Dialogs */
+    .m3-dialog-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .m3-dialog-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .m3-dialog {
+      background: var(--current-bg);
+      padding: 24px;
+      border-radius: 28px;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transform: scale(0.95);
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      position: relative;
+    }
+
+    .m3-dialog-overlay.active .m3-dialog {
+      transform: scale(1);
+    }
+
+    .dialog-close {
+      position: absolute;
+      top: -16px;
+      right: -16px;
+      width: 40px;
+      height: 40px;
+      background: var(--text-dark);
+      color: #FFF;
+      border: none;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      z-index: 10;
+    }
+
+    .artifact-img {
+      width: auto;
+      max-width: 800px;
+      height: auto;
+      max-height: 70vh;
+      border-radius: 12px;
+      object-fit: contain;
+      border: 1px solid var(--current-border-subtle);
+    }
+
+    .dialog-caption {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin: 0;
+    }
+
+    /* =========================================
+     Section 4: The Execution
+     ========================================= */
+    .execution-layout {
+      width: 100%;
+      max-width: 1600px;
+      min-height: 90vh;
+      display: flex;
+      gap: 4rem;
+      align-items: flex-start;
+    }
+
+    .execution-left {
+      flex: 0 0 45%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding-right: 1rem;
+    }
+
+    .execution-left::-webkit-scrollbar {
+      width: 0px;
+      background: transparent;
+    }
+
+    .accordion-item {
+      background: var(--current-card-bg);
+      border: 1px solid var(--current-border-subtle);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .accordion-item.active {
+      border-color: var(--klook-orange);
+      box-shadow: 0 12px 24px var(--current-card-shadow);
+      background: linear-gradient(145deg, var(--current-card-bg) 60%, var(--current-pill-bg) 150%);
+    }
+
+    .accordion-header {
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+    }
+
+    .accordion-header:hover .acc-chevron {
+      transform: translateY(3px);
+      color: var(--klook-orange);
+    }
+
+    .acc-num {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--current-muted);
+      background: var(--current-bg);
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .accordion-item.active .acc-num {
+      background: var(--klook-orange);
+      color: #FFF;
+    }
+
+    .acc-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--current-text);
+      margin: 0;
+      flex: 1;
+      transition: color 0.3s;
+    }
+
+    .accordion-item.active .acc-title {
+      color: var(--klook-orange);
+    }
+
+    .acc-chevron {
+      font-size: 24px;
+      color: var(--current-muted);
+      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.3s;
+    }
+
+    .accordion-item:not(.active) .acc-chevron {
+      animation: chevronPulse 2s infinite ease-in-out;
+    }
+
+    @keyframes chevronPulse {
+
+      0%,
+      100% {
+        transform: translateY(0);
+        opacity: 0.6;
+      }
+
+      50% {
+        transform: translateY(-4px);
+        opacity: 1;
+      }
+    }
+
+    .accordion-item.active .acc-chevron {
+      transform: rotate(180deg);
+      color: var(--klook-orange);
+      animation: none;
+    }
+
+    .accordion-grid-wrapper {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .accordion-item.active .accordion-grid-wrapper {
+      grid-template-rows: 1fr;
+    }
+
+    .accordion-body-inner {
+      overflow: hidden;
+      padding: 0 24px;
+      opacity: 0;
+      transition: opacity 0.3s ease, padding 0.3s ease;
+    }
+
+    .accordion-item.active .accordion-body-inner {
+      opacity: 1;
+      padding: 0 24px 24px 24px;
+      transition-delay: 0.1s;
+    }
+
+    /* ✨ 雙軌 UX：桌面版 Inner Scroll */
+    .text-container {
+      position: relative;
+    }
+
+    .text-content {
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--current-muted);
+      margin: 0;
+      max-height: 120px;
+      overflow-y: auto;
+      padding-right: 12px;
+
+      /* 這行留白，最後一行字不會被切掉*/
+      padding-bottom: 32px;
+
+      overscroll-behavior: contain;
+    }
+
+    .text-content::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .text-content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .text-content::-webkit-scrollbar-thumb {
+      background: var(--current-border-subtle);
+      border-radius: 4px;
+    }
+
+    .scroll-mask {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 32px;
+      background: linear-gradient(transparent, var(--current-solid-card-bg));
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .read-more-btn {
+      display: none;
+    }
+
+    /* 桌面版不顯示展開按鈕 */
+
+    /* 右側證據板 */
+    .execution-right {
+      flex: 0 0 50%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sticky-board-container {
+      width: 100%;
+      max-width: 550px;
+      /* ★ 限制最大寬度550px) */
+      margin: 0 auto;
+      /* ★ 新增這行：讓變小的圖板保持在右側區塊的正中間 */
+
+      aspect-ratio: 12 / 11;
+      /* ★ 換上最簡比例 */
+
+      max-height: 80vh;
+      background: #000;
+      border-radius: 24px;
+      position: sticky;
+      top: 10vh;
+      overflow: hidden;
+      border: 1px solid var(--current-border-subtle);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .board-img-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transform: scale(0.96);
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .board-img-layer.active {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+
+    .highlight-overlay {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      transition-delay: 0.3s;
+    }
+
+    .board-img-layer.active .highlight-overlay {
+      opacity: 1;
+    }
+
+    .pulse-badge {
+      background: var(--klook-orange);
+      color: #FFF;
+      font-size: 14px;
+      font-weight: 800;
+      padding: 8px 16px;
+      border-radius: 8px;
+      white-space: nowrap;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition-delay: 0.5s;
+      box-shadow: 0 4px 12px rgba(255, 91, 0, 0.3);
+    }
+
+    .pulse-badge::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 8px;
+      border: 2px solid var(--klook-orange);
+      animation: badgePulse 2s infinite ease-out;
+      z-index: -1;
+    }
+
+    @keyframes badgePulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: scale(1.3);
+        opacity: 0;
+      }
+    }
+
+    .board-img-layer.active .pulse-badge {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* =========================================
+     RWD 桌機與平板適配 (1200px - 769px)
+     ========================================= */
+    /* ✨ 桌機版專屬：徹底刪除舊標題，新箭頭完美平齊文字 */
+    @media (min-width: 769px) {
+
+      /* 1. 閉合狀態：給予剛好能顯示標題的高度 */
+      .accordion-item {
+        max-height: 110px;
+        overflow: hidden;
+      }
+
+      /* 2. 展開時：解除整個外框的高度限制 */
+      .accordion-item.active {
+        max-height: none;
+      }
+
+      /* 3. 🎯 展開時，徹底刪除原本的標題列，不留任何幽靈空白！ */
+      .accordion-item.active .accordion-header {
+        display: none !important;
+      }
+
+      /* 4. 內文容器設定：加上 relative 讓新箭頭可以精準對齊 */
+      .accordion-item.active .accordion-body-inner {
+        padding: 24px 24px 48px 24px;
+        position: relative;
+        min-height: 180px;
+      }
+
+      /* 5. 🎯 新箭頭的最終完美定位：數學級的精準對齊 */
+      /* 5. 🎯 新箭頭的最終完美定位：數學級的精準對齊 */
+      .inner-close-btn {
+        position: absolute;
+
+        /* 👇 修改這兩行就好 👇 */
+        top: -4px;
+        /* 🎯 從 24px 改回 -4px：讓它往上吸，與第一行粗體字完美水平對齊 */
+        right: 0px;
+        /* 🎯 從 24px 改回 0px：讓它靠齊文字框的安全邊界 */
+        /* 👆 修改這兩行就好 👆 */
+
+        color: var(--klook-orange);
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 10;
+        display: none;
+        line-height: 1;
+      }
+
+      /* 展開時才顯示新箭頭 */
+      .accordion-item.active .inner-close-btn {
+        display: block;
+      }
+
+      /* 6. 直接放大文字框的容量，避開新箭頭 */
+      .text-content {
+        transition: max-height 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      .accordion-item.active .text-content {
+        max-height: 500px;
+        padding-right: 40px;
+        /* 留出空間給箭頭，避免文字與箭頭重疊 */
+      }
+
+      /* 7. 隱藏多餘遮罩 */
+      .accordion-item.active .scroll-mask {
+        display: none;
+      }
+    }
+
+    /* 確保手機版絕對不會顯示這個新箭頭 */
+    @media (max-width: 768px) {
+      .inner-close-btn {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 1200px) {
+
+      .archive-layout,
+      .execution-layout {
+        flex-direction: column;
+        height: auto;
+        gap: 2rem;
+      }
+
+      .archive-left,
+      .execution-left {
+        flex: none;
+        height: auto;
+        max-height: none;
+        position: relative;
+        padding-right: 0;
+      }
+
+      .archive-right {
+        flex: none;
+        padding-bottom: 5vh;
+        overflow-y: visible;
+      }
+
+      .evidence-card {
+        grid-template-columns: 240px 1fr;
+        min-height: auto;
+      }
+
+      .claim-image-wrapper {
+        height: 400px;
+      }
+
+      .pipeline-nodes {
+        flex-wrap: wrap;
+        gap: 40px;
+      }
+
+      .node-card {
+        flex: 1 1 45%;
+      }
+
+      .flow-track,
+      .micro-metric-badge {
+        display: none;
+      }
+
+      .execution-right {
+        width: 100%;
+        height: 600px;
+        margin-top: 20px;
+      }
+
+      .sticky-board-container {
+        aspect-ratio: auto;
+        height: 100%;
+        position: relative;
+        top: 0;
+      }
+    }
+
+    /* =========================================
+     RWD 手機版完美適配 (螢幕寬度小於 768px)
+     ========================================= */
+    @media (max-width: 768px) {
+      .section-container {
+        height: auto;
+        min-height: 100vh;
+        padding: 4rem 1.5rem;
+        scroll-snap-align: none;
+      }
+
+      .hero-content {
+        justify-content: flex-start;
+        gap: 2rem;
+        padding-top: 2rem;
+      }
+
+      .pre-title {
+        font-size: 14px;
+        padding: 8px 20px;
+      }
+
+      .title {
+        font-size: 48px;
+        line-height: 1.1;
+        letter-spacing: -0.5px;
+      }
+
+      .pre-title+.sub-title {
+        font-size: 20px;
+        padding: 0 10px;
+      }
+
+      .ticker-wrap {
+        font-size: 64px;
+        gap: 15px;
+        flex-wrap: wrap;
+        text-align: center;
+        margin: 1rem 0;
+      }
+
+      .data-grid {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+      }
+
+      .data-card {
+        padding: 24px;
+        min-width: 100%;
+        transform: none !important;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px var(--current-card-shadow) !important;
+      }
+
+      .data-value {
+        font-size: 40px;
+        margin-bottom: 4px;
+      }
+
+      .data-label {
+        font-size: 16px;
+      }
+
+      .archive-layout {
+        flex-direction: column;
+        height: auto;
+        gap: 2rem;
+      }
+
+      .archive-left {
+        flex: none;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .section-title {
+        font-size: 36px;
+        text-align: left;
+      }
+
+      /* ✨ 手機版 Chips 置頂黏滯 */
+      .chip-group {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: var(--current-bg);
+        padding-top: 10px;
+        margin-top: -10px;
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .chip-group::-webkit-scrollbar {
+        display: none;
+      }
+
+      .m3-chip {
+        white-space: nowrap;
+        font-size: 14px;
+        padding: 10px 16px;
+      }
+
+      .claim-image-wrapper {
+        height: 300px;
+        width: 100%;
+        border-radius: 12px;
+      }
+
+      .optimized-stamp {
+        font-size: 28px;
+        padding: 8px 16px;
+        border-width: 4px;
+      }
+
+      .archive-right {
+        flex: none;
+        overflow-y: visible;
+        padding-bottom: 2rem;
+        gap: 4rem;
+        padding-right: 0;
+      }
+
+      .evidence-card {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .evidence-img-box {
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        margin: 0 auto;
+        border-radius: 12px;
+      }
+
+      .evidence-caption {
+        font-size: 24px;
+      }
+
+      .evidence-insight {
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      .pipeline-wrapper {
+        padding: 0;
+        margin-top: 2rem;
+      }
+
+      .pipeline-nodes {
+        flex-direction: column;
+        gap: 60px;
+      }
+
+      .node-card {
+        width: 100%;
+        padding: 0;
+      }
+
+      .flow-track {
+        display: block;
+        top: 0;
+        left: 60px;
+        width: 6px;
+        height: 100%;
+      }
+
+      .flow-glow {
+        width: 100%;
+        height: 40%;
+        background: linear-gradient(180deg, transparent 0%, rgba(255, 91, 0, 0.5) 50%, rgba(255, 91, 0, 1) 100%);
+        animation: flowDown 3s infinite ease-in-out;
+      }
+
+      @keyframes flowDown {
+        0% {
+          transform: translateY(-100%);
+        }
+
+        100% {
+          transform: translateY(300%);
+        }
+      }
+
+      .micro-metric-badge {
+        top: 22%;
+        left: 100px;
+        transform: none;
+        white-space: nowrap;
+        animation: none;
+      }
+
+      .artifact-img {
+        width: 100%;
+      }
+
+      .execution-layout {
+        flex-direction: column;
+        height: auto;
+        position: relative;
+        padding-top: 10px;
+      }
+
+      .execution-right {
+        order: -1;
+        width: 100%;
+        height: 45vh;
+        margin-bottom: 20px;
+        z-index: 20;
+        position: sticky;
+        top: 10px;
+      }
+
+      .sticky-board-container {
+        aspect-ratio: auto;
+        height: 100%;
+        position: relative;
+        top: 0;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        border-radius: 16px;
+      }
+
+      .execution-left {
+        order: 1;
+        width: 100%;
+        max-height: none;
+        overflow-y: visible;
+        padding-right: 0;
+      }
+
+      .acc-title {
+        font-size: 20px;
+      }
+
+      /* ✨ 雙軌 UX：手機版 Text Clamp 與展開按鈕 */
+      .text-content {
+        max-height: none;
+        overflow-y: visible;
+        padding-right: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        font-size: 16px;
+      }
+
+      .text-container.expanded .text-content {
+        -webkit-line-clamp: unset;
+      }
+
+      .scroll-mask {
+        height: 28px;
+      }
+
+      .text-container.expanded .scroll-mask {
+        opacity: 0;
+      }
+
+      .read-more-btn {
+        display: inline-block;
+        color: var(--klook-orange);
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 700;
+        margin-top: 12px;
+        position: relative;
+        z-index: 2;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="section-container" id="hero-section">
+    <div class="hero-content">
+      <div class="pre-title">Operations Excellence Case Study | Raja Ampat 2026</div>
+      <h1 class="title">Shattering the Middleman Monopoly</h1>
+      <div class="sub-title">A <span class="highlight">60%</span> Cost Reduction in Remote Supply Chains.</div>
+      <div class="ticker-wrap">
+        <span class="old-price">$5,845</span>
+        <span style="font-size: 0.3em; color: var(--current-muted);">➔</span>
+        <span class="new-price">$<span id="final-price">5845</span><span class="currency-label">USD</span></span>
+      </div>
+      <div class="data-grid">
+        <div class="data-card">
+          <div class="data-value">60%</div>
+          <div class="data-label">成本降幅</div>
+        </div>
+        <div class="data-card">
+          <div class="data-value">40+</div>
+          <div class="data-label">供應商直接談判</div>
+        </div>
+        <div class="data-card">
+          <div class="data-value">95%</div>
+          <div class="data-label">體驗品質達成</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-container" id="details-section">
+    <div class="archive-layout">
+      <div class="archive-left">
+        <h2 class="section-title">The Challenge</h2>
+        <div class="chip-group">
+          <div class="m3-chip active" id="chip-1" data-target="1">01.通路漏損與平台壟斷</div>
+          <div class="m3-chip" id="chip-2" data-target="2">02.不透明的黑箱捆綁銷售</div>
+          <div class="m3-chip" id="chip-3" data-target="3">03.無標準化的隱藏規費</div>
+          <div class="m3-chip" id="chip-4" data-target="4">04.基礎設施與衛生風險</div>
+        </div>
+        <div class="claim-image-wrapper">
+          <picture>
+            <source media="(max-width: 768px)" srcset="tr_pic/tr_pic05_s.jpg">
+            <img src="tr_pic/tr_pic05.jpg" alt="Original WhatsApp Quote" class="claim-img">
+          </picture>
+          <div class="strikethrough-anim" id="strikethrough-overlay">
+            <div class="strike-line"></div>
+            <div class="strike-line strike-line-2"></div>
+            <div class="optimized-stamp">Optimized: $2,200</div>
+          </div>
+        </div>
+      </div>
+      <div class="archive-right" id="evidence-container">
+        <div class="evidence-card" data-index="1">
+          <div class="evidence-img-box">
+            <picture>
+              <source media="(max-width: 768px)" srcset="tr_pic/tr_pic01_s.jpg"><img src="tr_pic/tr_pic01.jpg"
+                alt="Evidence 1">
+            </picture>
+          </div>
+          <div class="evidence-content">
+            <div class="m3-badge">Evidence 01</div>
+            <h3 class="evidence-caption">平台壟斷</h3>
+            <p class="evidence-insight"><span class="insight-label">發現
+                (Discovery)：</span>平台客服限制提供底層供應商聯絡方式，形成資訊孤島與不必要的仲介疊加</p>
+          </div>
+        </div>
+        <div class="evidence-card" data-index="2">
+          <div class="evidence-img-box">
+            <picture>
+              <source media="(max-width: 768px)" srcset="tr_pic/tr_pic02_s.jpg"><img src="tr_pic/tr_pic02.jpg"
+                alt="Evidence 2">
+            </picture>
+          </div>
+          <div class="evidence-content">
+            <div class="m3-badge">Evidence 02</div>
+            <h3 class="evidence-caption">捆綁銷售</h3>
+            <p class="evidence-insight"><span class="insight-label">發現
+                (Discovery)：</span>仲介強迫購買全套生態旅遊包，拒絕溝通與切分服務，試圖從中賺取資訊差價</p>
+          </div>
+        </div>
+        <div class="evidence-card" data-index="3">
+          <div class="evidence-img-box">
+            <picture>
+              <source media="(max-width: 768px)" srcset="tr_pic/tr_pic03_s.jpg"><img src="tr_pic/tr_pic03.jpg"
+                alt="Evidence 3">
+            </picture>
+          </div>
+          <div class="evidence-content">
+            <div class="m3-badge">Evidence 03</div>
+            <h3 class="evidence-caption">非標準化隱藏費用</h3>
+            <p class="evidence-insight"><span class="insight-label">發現
+                (Discovery)：</span>當地習慣法、村落規費與各種臨時捐款疊加，快艇與物流運輸沒有標準公定價，報價水分極高，預算呈現極高的不可控性</p>
+          </div>
+        </div>
+        <div class="evidence-card" data-index="4">
+          <div class="evidence-img-box">
+            <picture>
+              <source media="(max-width: 768px)" srcset="tr_pic/tr_pic04_s.jpg"><img src="tr_pic/tr_pic04.jpg"
+                alt="Evidence 4">
+            </picture>
+          </div>
+          <div class="evidence-content">
+            <div class="m3-badge">Evidence 04</div>
+            <h3 class="evidence-caption">極端惡劣的住宿條件（老鼠、螞蟻、無穩定供電）</h3>
+            <p class="evidence-insight"><span class="insight-label">發現 (Discovery)：</span>蚊蟲、老鼠、螞蟻、無穩定供電</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-container" id="strategy-section">
+    <div class="strategy-content">
+      <h2 class="section-title" style="font-size: 64px; margin-bottom: 0px;">The Strategy</h2>
+      <div class="advanced-sub-title">THE AUTOMATED PIPELINE: FROM RAW DATA TO DECISION MODEL</div>
+      <div class="pipeline-wrapper">
+        <div class="flow-track">
+          <div class="flow-glow"></div>
+        </div>
+        <div class="micro-metric-badge">⚡️ 資料處理時間節省 80%</div>
+        <div class="pipeline-nodes">
+          <div class="node-card">
+            <div class="node-icon-wrapper">
+              <div class="node-number">01</div>
+              <img src="tr_pic/tr_icon_social.png" alt="Social Media Data" class="node-icon">
+            </div>
+            <div class="node-text">
+              <h4 class="node-title">多渠道在地情報蒐集</h4>
+              <p class="node-desc">整合 Facebook、WhatsApp 與各類開源情報，將碎片化的社群足跡轉化為原始資料池。</p>
+            </div>
+          </div>
+          <div class="node-card interactive-node" onclick="openDialog('prompt-dialog')">
+            <div class="node-icon-wrapper">
+              <div class="node-number">02</div>
+              <img src="tr_pic/tr_icon_gemini.png" alt="AI Agent" class="node-icon">
+              <div class="view-action-chip">🔍 View Prompt</div>
+            </div>
+            <div class="node-text">
+              <h4 class="node-title">AI 探員意圖分析</h4>
+              <p class="node-desc">利用大型語言模型破解在地語言障礙，透過語意分析萃取出隱藏的中介邏輯與報價漏洞。</p>
+            </div>
+          </div>
+          <div class="node-card interactive-node" onclick="openDialog('kb-dialog')">
+            <div class="node-icon-wrapper">
+              <div class="node-number">03</div>
+              <img src="tr_pic/tr_icon_notebook.png" alt="Knowledge Base" class="node-icon">
+              <div class="view-action-chip">🔍 View Artifact</div>
+            </div>
+            <div class="node-text">
+              <h4 class="node-title">建構營運知識中樞</h4>
+              <p class="node-desc">將清理後的情報結構化，建立具備規模化、可被反覆查詢與驗證的底層供應商知識庫。</p>
+            </div>
+          </div>
+          <div class="node-card">
+            <div class="node-icon-wrapper">
+              <div class="node-number">04</div>
+              <img src="tr_pic/tr_icon_target.png" alt="Execution" class="node-icon">
+            </div>
+            <div class="node-text">
+              <h4 class="node-title">直擊底線成本</h4>
+              <p class="node-desc">繞過平台壟斷，依據精準的數據模型與供應商展開直接談判，確保利潤率與服務標準。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-container" id="execution-section">
+    <div class="execution-layout">
+
+      <div class="execution-left">
+        <h2 class="section-title" style="margin-bottom: 1rem;">The Execution</h2>
+        <div class="advanced-sub-title"
+          style="font-size: 16px; font-weight: 300; letter-spacing: 2px; color: var(--current-muted); opacity: 0.7; margin-bottom: 2rem;">
+          NEGOTIATION & CRISIS MANAGEMENT</div>
+
+        <div class="accordion-item active" data-img="s4-img1">
+          <div class="accordion-header">
+            <div class="acc-num">01</div>
+            <h3 class="acc-title">數據驅動談判</h3>
+            <div class="acc-chevron">↓</div>
+          </div>
+          <div class="accordion-grid-wrapper">
+            <div class="accordion-body-inner">
+              <div class="text-container" id="text-bt1">
+
+                <div class="inner-close-btn" onclick="closeAccordion(event)">↑</div>
+
+                <div class="text-content" onscroll="handleInnerScroll(this)">
+                  <strong style="color: var(--text-light);">拆解變動成本，擠出 40% 溢價水分。</strong><br>透過動態調整航線（拔除
+                  Misool），用精確的油耗邏輯逼迫船東重新計算真實成本，成功將預算從 50M 壓制到 30M，破解漫天要價的困境。
+                </div>
+                <div class="scroll-mask"></div>
+              </div>
+              <div class="read-more-btn" onclick="toggleText(event, 'text-bt1')">展開顯示完整內容 ↓</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item" data-img="s4-img2">
+          <div class="accordion-header">
+            <div class="acc-num">02</div>
+            <h3 class="acc-title">商業審計防線</h3>
+            <div class="acc-chevron">↓</div>
+          </div>
+          <div class="accordion-grid-wrapper">
+            <div class="accordion-body-inner">
+              <div class="text-container" id="text-bt2">
+                <div class="inner-close-btn" onclick="closeAccordion(event)">↑</div>
+                <div class="text-content" onscroll="handleInnerScroll(this)">
+                  <strong style="color: var(--text-light);">零容忍的合規與防漏機制。</strong><br>降價的同時，我嚴格審計報價單找出重複收費（Item 5 &
+                  7），並在出發前鎖死「All-in 邊界」，徹底阻斷供應商現場追加隱藏費用的空間。
+                </div>
+                <div class="scroll-mask"></div>
+              </div>
+              <div class="read-more-btn" onclick="toggleText(event, 'text-bt2')">展開顯示完整內容 ↓</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item" data-img="s4-img3">
+          <div class="accordion-header">
+            <div class="acc-num">03</div>
+            <h3 class="acc-title">風險壓力測試</h3>
+            <div class="acc-chevron">↓</div>
+          </div>
+          <div class="accordion-grid-wrapper">
+            <div class="accordion-body-inner">
+              <div class="text-container" id="text-bt3">
+                <div class="inner-close-btn" onclick="closeAccordion(event)">↑</div>
+                <div class="text-content" onscroll="handleInnerScroll(this)">
+                  <strong
+                    style="color: var(--text-light);">結構化逼問破解資訊不對稱。</strong><br>不輕信供應商的保證，透過結構化的交叉提問與具體的技術規格要求（洋流閱讀力），主動掃雷，排除會導致營運中斷的安全與衛生（老鼠）風險。
+                </div>
+                <div class="scroll-mask"></div>
+              </div>
+              <div class="read-more-btn" onclick="toggleText(event, 'text-bt3')">展開顯示完整內容 ↓</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item" data-img="s4-img4">
+          <div class="accordion-header">
+            <div class="acc-num">04</div>
+            <h3 class="acc-title">談判底線魄力</h3>
+            <div class="acc-chevron">↓</div>
+          </div>
+          <div class="accordion-grid-wrapper">
+            <div class="accordion-body-inner">
+              <div class="text-container" id="text-bt4">
+                <div class="inner-close-btn" onclick="closeAccordion(event)">↑</div>
+                <div class="text-content" onscroll="handleInnerScroll(this)">
+                  <strong style="color: var(--text-light);">設定清晰的 Walk-away
+                    條件。</strong><br>當供應商無法回答具體規格，施加『要求資訊透明對等』的壓力以及報價嚴重背離市場行情，果斷喊卡。絕不為了解決短期的供給問題，而犧牲長期的成本結構。
+                </div>
+                <div class="scroll-mask"></div>
+              </div>
+              <div class="read-more-btn" onclick="toggleText(event, 'text-bt4')">展開顯示完整內容 ↓</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item" data-img="s4-img5">
+          <div class="accordion-header">
+            <div class="acc-num">05</div>
+            <h3 class="acc-title">無合約約束治理</h3>
+            <div class="acc-chevron">↓</div>
+          </div>
+          <div class="accordion-grid-wrapper">
+            <div class="accordion-body-inner">
+              <div class="text-container" id="text-bt5">
+                <div class="inner-close-btn" onclick="closeAccordion(event)">↑</div>
+                <div class="text-content" onscroll="handleInnerScroll(this)">
+                  <strong style="color: var(--text-light);">轉譯隱性規則，將在地文化建構為營運SOP</strong><br>結合『文化手腕』與『標準流程』。
+                  營運端，制定9大SLA檢核表，排除安息日禁令與隱藏規費等模糊風險。治理端，運用『檳榔外交』遵循部落習慣法，爭取在地決策者信任。
+                </div>
+                <div class="scroll-mask"></div>
+              </div>
+              <div class="read-more-btn" onclick="toggleText(event, 'text-bt5')">展開顯示完整內容 ↓</div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+      <div class="execution-right">
+        <div class="sticky-board-container">
+
+          <div class="board-img-layer active" id="s4-img1">
+            <img src="tr_pic/tr_s4_img1.jpg" alt="Data Driven Negotiation" style="position:relative; z-index: 1;">
+            <div class="highlight-overlay" style="top: 70%; left: 50%; z-index: 2;">
+              <div class="pulse-badge">50M ➔ 30M 成功砍價</div>
+            </div>
+          </div>
+
+          <div class="board-img-layer" id="s4-img2">
+            <img src="tr_pic/tr_s4_img2.png" alt="Commercial Audit" style="position:relative; z-index: 1;">
+            <div class="highlight-overlay" style="top: 30%; left: 30%; z-index: 2;">
+              <div class="pulse-badge">抓出重複計價 Item 5 & 7</div>
+            </div>
+            <div class="highlight-overlay" style="top: 70%; left: 70%; z-index: 2;">
+              <div class="pulse-badge">鎖死 All-in 邊界</div>
+            </div>
+          </div>
+
+          <div class="board-img-layer" id="s4-img3">
+            <img src="tr_pic/tr_s4_img3.jpg" alt="Risk Stress Test" style="position:relative; z-index: 1;">
+            <div class="highlight-overlay" style="top: 30%; left: 25%; z-index: 2;">
+              <div class="pulse-badge">戳破快艇規格矛盾</div>
+            </div>
+            <div class="highlight-overlay" style="top: 60%; left: 70%; z-index: 2;">
+              <div class="pulse-badge">主動掃雷衛生條件</div>
+            </div>
+          </div>
+
+          <div class="board-img-layer" id="s4-img4">
+            <img src="tr_pic/tr_s4_img4.jpg" alt="Zero Tolerance Governance" style="position:relative; z-index: 1;">
+
+            <div class="highlight-overlay" style="top: 45%; left: 25%; z-index: 2;">
+              <div class="pulse-badge">強制資訊透明</div>
+            </div>
+
+            <div class="highlight-overlay" style="top: 65%; left: 75%; z-index: 2;">
+              <div class="pulse-badge">果斷停損取消</div>
+            </div>
+          </div>
+
+          <div class="board-img-layer" id="s4-img5">
+            <img src="tr_pic/tr_s4_img5.jpg" alt="Contractless Governance" style="position:relative; z-index: 1;">
+
+            <div class="highlight-overlay" style="top: 40%; left: 25%; z-index: 2;">
+              <div class="pulse-badge">事前防堵：9大風險檢核表</div>
+            </div>
+
+            <div class="highlight-overlay" style="top: 60%; left: 75%; z-index: 2;">
+              <div class="pulse-badge">落地執行：遵循 Adat 拜訪機制</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="m3-dialog-overlay" id="prompt-dialog" onclick="closeDialog(event, 'prompt-dialog')">
+    <div class="m3-dialog">
+      <button class="dialog-close" onclick="closeDialog(event, 'prompt-dialog', true)">×</button>
+      <img src="tr_pic/tr_artifact_prompt.png" alt="Gemini Core Prompt" class="artifact-img">
+      <h4 class="dialog-caption">Strategic Prompt: Extracting Hidden Cost Layers</h4>
+    </div>
+  </div>
+  <div class="m3-dialog-overlay" id="kb-dialog" onclick="closeDialog(event, 'kb-dialog')">
+    <div class="m3-dialog">
+      <button class="dialog-close" onclick="closeDialog(event, 'kb-dialog', true)">×</button>
+      <img src="tr_pic/tr_artifact_kb.png" alt="NotebookLM Knowledge Base" class="artifact-img">
+      <h4 class="dialog-caption">Structured Output: Decentralized Supplier Database</h4>
+    </div>
+  </div>
+
+  <script>
+    // Ticker 動畫
+    const targetPrice = 2200;
+    const element = document.getElementById('final-price');
+    function springAnimate() {
+      let startTimestamp = null;
+      const duration = 2500;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const currentVal = Math.floor(5845 - (5845 - targetPrice) * (progress === 1 ? 1 : (1 - Math.pow(2, -10 * progress))));
+        element.innerHTML = currentVal.toLocaleString();
+        if (progress < 1) window.requestAnimationFrame(step);
+      };
+      window.requestAnimationFrame(step);
+    }
+    setTimeout(springAnimate, 600);
+
+
+    // 全域主題切換
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (entry.target.id === 'details-section' || entry.target.id === 'execution-section') {
+            document.body.classList.add('dark-theme');
+          } else {
+            document.body.classList.remove('dark-theme');
+          }
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.section-container').forEach(section => sectionObserver.observe(section));
+
+    // =========================================
+    // Section 2: 點擊 Chip 響應式跳轉
+    // =========================================
+    const chips = document.querySelectorAll('.m3-chip');
+    const evidenceContainer = document.getElementById('evidence-container');
+    let isAutoScrolling = false;
+    let scrollTimeout;
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const targetIndex = chip.getAttribute('data-target');
+        const targetCard = document.querySelector(`.evidence-card[data-index="${targetIndex}"]`);
+
+        if (targetCard) {
+          isAutoScrolling = true;
+          clearTimeout(scrollTimeout);
+
+          chips.forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+
+          // 🌟 點擊時直接觸發或關閉動畫
+          const strikethroughOverlay = document.getElementById('strikethrough-overlay');
+          if (targetIndex === '4') {
+            strikethroughOverlay.classList.add('show-strike');
+          } else {
+            strikethroughOverlay.classList.remove('show-strike');
+          }
+
+          if (window.innerWidth <= 768) {
+            // 手機版：精準扣除 sticky header 高度，防止跳轉後被遮擋
+            const yOffset = -100;
+            const y = targetCard.getBoundingClientRect().top + window.scrollY + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          } else {
+            evidenceContainer.scrollTo({ top: targetCard.offsetTop - evidenceContainer.offsetTop, behavior: 'smooth' });
+          }
+
+          scrollTimeout = setTimeout(() => { isAutoScrolling = false; }, 800);
+        }
+      });
+    });
+
+    // =========================================
+    // Section 2: 響應式 Scroll Spy
+    // =========================================
+    // =========================================
+    // Section 2: 響應式 Scroll Spy (修正觸發判定)
+    // =========================================
+    let cardObserver;
+    function initScrollSpy() {
+      if (cardObserver) cardObserver.disconnect();
+      const isMobile = window.innerWidth <= 768;
+      const strikethroughOverlay = document.getElementById('strikethrough-overlay');
+
+      cardObserver = new IntersectionObserver((entries) => {
+        if (isAutoScrolling) return;
+
+        entries.forEach(entry => {
+          // 放寬條件：只要有進入畫面 (isIntersecting)，就視為觸發
+          if (entry.isIntersecting) {
+            const index = entry.target.getAttribute('data-index');
+
+            // 更新左側 Chip 狀態
+            chips.forEach(c => c.classList.remove('active'));
+            const activeChip = document.getElementById(`chip-${index}`);
+            if (activeChip) activeChip.classList.add('active');
+
+            // 觸發或關閉動畫
+            if (index === '4') {
+              strikethroughOverlay.classList.add('show-strike');
+            } else {
+              strikethroughOverlay.classList.remove('show-strike');
+            }
+
+            // 手機版 Chip 置中滾動
+            if (isMobile && activeChip) {
+              const chipGroup = document.querySelector('.chip-group');
+              const scrollPos = activeChip.offsetLeft - (chipGroup.offsetWidth / 2) + (activeChip.offsetWidth / 2);
+              chipGroup.scrollTo({ left: scrollPos, behavior: 'smooth' });
+            }
+          }
+        });
+      }, {
+        root: isMobile ? null : evidenceContainer,
+        // 放大觀察窗：桌機版改為 '-20% 0px -30% 0px' (佔中間 50%)
+        // 手機版維持 '-20% 0px -60% 0px' (佔上半部 20%)
+        rootMargin: isMobile ? '-20% 0px -60% 0px' : '-20% 0px -30% 0px',
+
+        // 降低門檻：只要有 10% 進入觀察窗就觸發，避免高卡片無法觸發的問題
+        threshold: 0.1
+      });
+
+      // 確保每次初始化前先移除舊的監聽
+      document.querySelectorAll('.evidence-card').forEach(card => cardObserver.observe(card));
+    }
+
+    // 初始化呼叫
+    initScrollSpy();
+    // =========================================
+    // Section 3: Dialog 控制
+    // =========================================
+    function openDialog(dialogId) {
+      document.getElementById(dialogId).classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDialog(event, dialogId, forceClose = false) {
+      if (forceClose || event.target.id === dialogId) {
+        document.getElementById(dialogId).classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    // =========================================
+    // Section 4: 漸進式手風琴與展開文字邏輯
+    // =========================================
+    const accordionItems = document.querySelectorAll('.accordion-item');
+    const boardLayers = document.querySelectorAll('.board-img-layer');
+
+    // ✨ 雙軌 UX：桌面版 Inner Scroll 動態遮罩與閱讀模式邏輯
+    // ✨ 雙軌 UX：桌面版 Inner Scroll 動態遮罩 (互動改版後已大幅簡化)
+    function handleInnerScroll(el) {
+      if (window.innerWidth <= 768) return;
+
+      const mask = el.nextElementSibling;
+      // 容錯率調寬至 -5，確保手機版或平板若還有捲軸時，遮罩能順利消失
+      if (mask && el.scrollTop + el.clientHeight >= el.scrollHeight - 5) {
+        mask.style.opacity = '0';
+      } else if (mask) {
+        mask.style.opacity = '1';
+      }
+    }
+
+    accordionItems.forEach(item => {
+      const header = item.querySelector('.accordion-header');
+      header.addEventListener('click', () => {
+        const targetImgId = item.getAttribute('data-img');
+        const targetLayer = document.getElementById(targetImgId);
+
+        if (item.classList.contains('active')) {
+          item.classList.remove('active');
+          if (targetLayer) targetLayer.classList.remove('active');
+          return;
+        }
+
+        // == 👇 修改這裡：清除所有狀態 ==
+        accordionItems.forEach(acc => {
+          acc.classList.remove('active');
+          acc.classList.remove('reading-mode'); // 確保切換時解除閱讀模式
+
+          // 將文字區塊的滾動軸重置回最上方
+          const textContent = acc.querySelector('.text-content');
+          if (textContent) textContent.scrollTop = 0;
+        });
+        // == 👆 修改完畢 ==
+        boardLayers.forEach(layer => layer.classList.remove('active'));
+
+        item.classList.add('active');
+        if (targetLayer) targetLayer.classList.add('active');
+
+        // 初始化展開後的遮罩判定
+        setTimeout(() => {
+          const textContent = item.querySelector('.text-content');
+          if (textContent && window.innerWidth > 768) {
+            handleInnerScroll(textContent);
+          }
+        }, 400); // 配合 CSS 動畫秒數
+      });
+    });
+
+    // ✨ 雙軌 UX：手機版 Text Clamp 展開/收合
+    function toggleText(event, containerId) {
+      event.stopPropagation(); // 阻止事件冒泡，避免觸發手風琴收合
+      const container = document.getElementById(containerId);
+      const btn = event.target;
+      if (container.classList.contains('expanded')) {
+        container.classList.remove('expanded');
+        btn.innerHTML = '展開顯示完整內容 ↓';
+      } else {
+        container.classList.add('expanded');
+        btn.innerHTML = '收合 ↑';
+      }
+    }
+    // 新增：內文專屬箭頭的收合功能
+    function closeAccordion(event) {
+      event.stopPropagation(); // 阻止事件干擾
+      const item = event.target.closest('.accordion-item');
+      if (item) {
+        // 移除左側文字框的展開狀態
+        item.classList.remove('active');
+
+        // 移除右側圖片的顯示狀態
+        const targetImgId = item.getAttribute('data-img');
+        const targetLayer = document.getElementById(targetImgId);
+        if (targetLayer) targetLayer.classList.remove('active');
+      }
+    }
+  </script>
+
+</body>
+
+</html>
